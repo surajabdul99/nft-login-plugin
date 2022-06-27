@@ -45,17 +45,11 @@ class Nft_Login_Util
         }
         if ($chain_id == Nft_Login_Util::TEZOS_CHAIN_ID) {
 // verify tezos here..
-$tezosResponse = wp_remote_get($node.''.$address);
-// print_r($tezosResponse);
-
-// $responseBody = wp_remote_retrieve_body( $tezosResponse );
-// $result = json_decode( $tezosResponse);
-// print_r($result);
-
-// if ( is_array( $result ) && ! is_wp_error( $result ) ) {
-//     // Work with the $result data
-    return true;
-// }
+$tezosResponse = wp_remote_get($node.''.$address);	
+$http_code = wp_remote_retrieve_response_code( $tezosResponse );
+if ($http_code == 200){
+     return true;
+}
         } else {
             $response = wp_remote_post($node, array(
                 'headers' => array('Content-Type' => 'application/json'),

@@ -89,6 +89,8 @@ class Nft_Login_Public {
         wp_enqueue_script( $this->plugin_name.'_formatic', plugin_dir_url( __FILE__ ) . 'js/formatic-2.0.6.js', array( $this->plugin_name.'_web3' ), $this->version, true );
         wp_enqueue_script( $this->plugin_name.'_web_provider', plugin_dir_url( __FILE__ ) . 'js/web3-provider-1.2.1-index.min.js', array( $this->plugin_name.'_web3' ), $this->version, true );
         wp_enqueue_script( $this->plugin_name.'_webmodal', plugin_dir_url( __FILE__ ) . 'js/webmodal-1.9.0-index.js', array( $this->plugin_name.'_web3' ), $this->version, true );
+        wp_enqueue_script( $this->plugin_name.'_walletbeacon', plugin_dir_url( __FILE__ ) . 'js/walletbeacon2.min.js', null , true );
+        wp_enqueue_script( $this->plugin_name.'_taquito', plugin_dir_url( __FILE__ ) . 'js/taquito.min.js', null , true );
 	}
 
 	public function user_register($user_id) {
@@ -170,7 +172,7 @@ class Nft_Login_Public {
             $nftlogin_address = ( ! empty( $_POST['nftlogin_address'] ) ) ? sanitize_text_field( $_POST['nftlogin_address'] ) : '';
             $nftlogin_token_id = ( ! empty( $_POST['nftlogin_token_id'] ) ) ? sanitize_text_field( $_POST['nftlogin_token_id'] ) : '';
             // skip verification of nftlogin_token_id because some contracts don't implement tokenOfOwnerByIndex
-            if ($nftlogin_address && $this->isValidAddress($nftlogin_address)) {
+            if ($nftlogin_address) {
                 setcookie($cookie_name, $cookie_value, strtotime('+1 day'));
                 $this->is_content_verified = true;
                 return;
