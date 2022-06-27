@@ -148,7 +148,7 @@ var NFTLOGIN = (function () {
     // https://api.better-call.dev/v1/account/mainnet/${testAddress}/token_balances
     
     fetch(
-      `https://api.tzkt.io/v1/tokens/balances?account.eq=${notOwner}&token.contract.eq=${addressOfContract}`
+      `https://api.tzkt.io/v1/tokens/balances?account.eq=${userWalletAddress}&token.contract.eq=${addressOfContract}`
     )
       .then((response) => response.json())
       .then((data) => {
